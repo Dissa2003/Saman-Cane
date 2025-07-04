@@ -110,7 +110,7 @@ function Hero() {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         <div className="flex items-center justify-center mb-6">
           <div className="bg-white/80 backdrop-blur-sm rounded-full p-4 shadow-lg border border-rose-200">
-            <img src={require('./background/logo/20250705_0240_Saman Cane Logo_simple_compose_01jzbmc0yye4g8meksj4hj9vwt.png')} alt="Saman Cane Logo" className="w-24 h-24 object-contain" />
+            <img src={require('./background/logo/20250705_0240_Saman Cane Logo_simple_compose_01jzbmc0yye4g8meksj4hj9vwt.png')} alt="Saman Cane Logo" className="w-40 h-40 object-contain" />
           </div>
         </div>
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-6 leading-tight">
