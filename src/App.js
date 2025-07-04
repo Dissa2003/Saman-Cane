@@ -18,7 +18,7 @@ function Navbar() {
     <nav className="fixed w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b border-rose-100">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <div className="flex items-center space-x-2">
-          <Leaf className="w-8 h-8 text-emerald-500" />
+          <img src={require('./background/logo/20250705_0240_Saman Cane Logo_simple_compose_01jzbmc0yye4g8meksj4hj9vwt.png')} alt="Saman Cane Logo" className="w-16 h-16 object-contain" />
           <span className="text-2xl font-bold text-slate-800 tracking-tight">
             Saman Cane
           </span>
@@ -110,7 +110,7 @@ function Hero() {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         <div className="flex items-center justify-center mb-6">
           <div className="bg-white/80 backdrop-blur-sm rounded-full p-4 shadow-lg border border-rose-200">
-            <Leaf className="w-12 h-12 text-emerald-500" />
+            <img src={require('./background/logo/20250705_0240_Saman Cane Logo_simple_compose_01jzbmc0yye4g8meksj4hj9vwt.png')} alt="Saman Cane Logo" className="w-24 h-24 object-contain" />
           </div>
         </div>
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-6 leading-tight">
@@ -468,7 +468,7 @@ function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Leaf className="w-8 h-8 text-emerald-400" />
+              <img src={require('./background/logo/20250705_0240_Saman Cane Logo_simple_compose_01jzbmc0yye4g8meksj4hj9vwt.png')} alt="Saman Cane Logo" className="w-16 h-16 object-contain" />
               <span className="text-2xl font-bold">Saman Cane</span>
             </div>
             <p className="text-slate-300 leading-relaxed">
