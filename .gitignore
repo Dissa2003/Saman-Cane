@@ -1,29 +1,64 @@
+# ---------------------------------------
 # Node modules and build output
+# ---------------------------------------
 node_modules/
 build/
 dist/
+.out/
+.next/
+.vite/
 
-# Cache files
+# ---------------------------------------
+# Cache files (Vite, Webpack, Babel, etc.)
+# ---------------------------------------
 .cache/
 *.cache
 npm-cache/
+.pnpm-debug.log*
+yarn.lock
 **/*.pack
 
-# Environment variables
+# ---------------------------------------
+# Local environment files
+# ---------------------------------------
 .env
+.env.local
+.env.development
+.env.production
+.env.test
 
-# Ignore all image files
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.svg
-*.webp
-
-# Mac system files
-.DS_Store
-
-# Log files
+# ---------------------------------------
+# Logs
+# ---------------------------------------
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+
+# ---------------------------------------
+# OS-specific
+# ---------------------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------
+# IDE / Editor folders
+# ---------------------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ---------------------------------------
+# Git-specific
+# ---------------------------------------
+*.orig
+
+# ---------------------------------------
+# Optional: ignore test coverage & reports
+# ---------------------------------------
+coverage/
+*.lcov
+nyc_output/
