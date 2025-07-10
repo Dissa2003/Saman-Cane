@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { Leaf, Star, Heart, Award, Phone, Mail, MapPin, CheckCircle } from "lucide-react";
 import Gallery from "./Gallery";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LivingRoom from "./LivingRoom";
+import Bedroom from "./Bedroom";
+import Dining from "./Dining";
+import Outdoor from "./outdoor";
+import Office from "./office";
+import Accessories from "./Accessories";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -224,37 +230,43 @@ function Categories() {
       name: "Living Room",
       description: "Comfortable seating and elegant coffee tables",
       color: "from-rose-100 to-rose-200",
-      icon: "🛋️"
+      icon: "🛋️",
+      link: "/living-room"
     },
     {
       name: "Bedroom",
       description: "Peaceful and serene bedroom furniture",
       color: "from-emerald-100 to-emerald-200",
-      icon: "🛏️"
+      icon: "🛏️",
+      link: "/bedroom"
     },
     {
       name: "Dining",
       description: "Perfect for family gatherings and meals",
       color: "from-amber-100 to-amber-200",
-      icon: "🍽️"
+      icon: "🍽️",
+      link: "/dining"
     },
     {
       name: "Outdoor",
       description: "Weather-resistant pieces for your garden",
       color: "from-blue-100 to-blue-200",
-      icon: "🌿"
+      icon: "🌿",
+      link: "/outdoor"
     },
     {
       name: "Office",
       description: "Productive and comfortable workspaces",
       color: "from-purple-100 to-purple-200",
-      icon: "💼"
+      icon: "💼",
+      link: "/office"
     },
     {
       name: "Accessories",
       description: "Decorative pieces to complete your space",
       color: "from-pink-100 to-pink-200",
-      icon: "✨"
+      icon: "✨",
+      link: "/accessories"
     }
   ];
 
@@ -269,7 +281,6 @@ function Categories() {
             Explore our diverse collection of handcrafted furniture designed for every room and purpose.
           </p>
         </div>
-        
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (
             <div key={index} className={`bg-gradient-to-br ${category.color} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-white/50`}>
@@ -278,8 +289,10 @@ function Categories() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-3">{category.name}</h3>
                 <p className="text-slate-600 leading-relaxed">{category.description}</p>
                 <div className="mt-4 inline-flex items-center text-emerald-600 font-medium">
-                  Explore Collection
-                  <span className="ml-2">→</span>
+                  <Link to={category.link} className="flex items-center hover:underline">
+                    Explore Collection
+                    <span className="ml-2">→</span>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -560,6 +573,12 @@ function App() {
               }
             />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/living-room" element={<LivingRoom />} />
+            <Route path="/bedroom" element={<Bedroom />} />
+            <Route path="/dining" element={<Dining />} />
+            <Route path="/outdoor" element={<Outdoor />} />
+            <Route path="/office" element={<Office />} />
+            <Route path="/accessories" element={<Accessories />} />
           </Routes>
         </main>
         <Footer />
