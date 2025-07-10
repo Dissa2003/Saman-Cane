@@ -8,6 +8,7 @@ import Dining from "./Dining";
 import Outdoor from "./outdoor";
 import Office from "./office";
 import Accessories from "./Accessories";
+import AdminPanel from "./admin/AdminPanel";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -579,6 +580,7 @@ function App() {
             <Route path="/outdoor" element={<Outdoor />} />
             <Route path="/office" element={<Office />} />
             <Route path="/accessories" element={<Accessories />} />
+            <Route path="/admin" element={<AdminPanel />} />
           </Routes>
         </main>
         <Footer />
