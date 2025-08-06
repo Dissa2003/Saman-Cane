@@ -1,57 +1,41 @@
-import React, { useState } from "react";
-
-// Import all images from the background folder
-import img1 from "./background/WhatsApp Image 2025-07-04 at 3.36.05 PM (1).jpeg";
-import img2 from "./background/WhatsApp Image 2025-07-04 at 3.36.05 PM (2).jpeg";
-import img3 from "./background/WhatsApp Image 2025-07-04 at 3.36.05 PM (3).jpeg";
-import img4 from "./background/WhatsApp Image 2025-07-04 at 3.36.05 PM.jpeg";
-import img5 from "./background/WhatsApp Image 2025-07-04 at 3.36.06 PM (1).jpeg";
-import img6 from "./background/WhatsApp Image 2025-07-04 at 3.36.06 PM (2).jpeg";
-import img7 from "./background/WhatsApp Image 2025-07-04 at 3.36.06 PM (3).jpeg";
-import img8 from "./background/WhatsApp Image 2025-07-04 at 3.36.06 PM.jpeg";
-import img9 from "./background/WhatsApp Image 2025-07-04 at 3.36.07 PM (1).jpeg";
-import img10 from "./background/WhatsApp Image 2025-07-04 at 3.36.07 PM (2).jpeg";
-import img11 from "./background/WhatsApp Image 2025-07-04 at 3.36.07 PM (3).jpeg";
-import img12 from "./background/WhatsApp Image 2025-07-04 at 3.36.07 PM.jpeg";
-import img13 from "./background/WhatsApp Image 2025-07-04 at 3.36.02 PM (1).jpeg";
-import img14 from "./background/WhatsApp Image 2025-07-04 at 3.36.02 PM (2).jpeg";
-import img15 from "./background/WhatsApp Image 2025-07-04 at 3.36.02 PM.jpeg";
-import img16 from "./background/WhatsApp Image 2025-07-04 at 3.36.03 PM (1).jpeg";
-import img17 from "./background/WhatsApp Image 2025-07-04 at 3.36.03 PM (2).jpeg";
-import img18 from "./background/WhatsApp Image 2025-07-04 at 3.36.03 PM (3).jpeg";
-import img19 from "./background/WhatsApp Image 2025-07-04 at 3.36.03 PM.jpeg";
-import img20 from "./background/WhatsApp Image 2025-07-04 at 3.36.04 PM (1).jpeg";
-import img21 from "./background/WhatsApp Image 2025-07-04 at 3.36.04 PM (2).jpeg";
-import img22 from "./background/WhatsApp Image 2025-07-04 at 3.36.04 PM.jpeg";
-
-const images = [
-  { src: img1, caption: "Elegant Cane Chair" },
-  { src: img2, caption: "Rattan Coffee Table" },
-  { src: img3, caption: "Handcrafted Dining Set" },
-  { src: img4, caption: "Natural Cane Sofa" },
-  { src: img5, caption: "Outdoor Rattan Furniture" },
-  { src: img6, caption: "Bedroom Cane Collection" },
-  { src: img7, caption: "Traditional Cane Craftsmanship" },
-  { src: img8, caption: "Modern Rattan Design" },
-  { src: img9, caption: "Garden Cane Furniture" },
-  { src: img10, caption: "Living Room Cane Set" },
-  { src: img11, caption: "Office Cane Chair" },
-  { src: img12, caption: "Cane Accessories" },
-  { src: img13, caption: "Rattan Storage Solutions" },
-  { src: img14, caption: "Cane Bed Frame" },
-  { src: img15, caption: "Outdoor Cane Seating" },
-  { src: img16, caption: "Dining Room Cane Set" },
-  { src: img17, caption: "Cane Side Table" },
-  { src: img18, caption: "Rattan Lounge Chair" },
-  { src: img19, caption: "Cane Cabinet" },
-  { src: img20, caption: "Garden Rattan Set" },
-  { src: img21, caption: "Cane Rocking Chair" },
-  { src: img22, caption: "Rattan Center Table" },
-];
+import React, { useState, useEffect } from "react";
 
 const Gallery = () => {
+  const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  // Load gallery images dynamically
+  const loadGalleryImages = () => {
+    try {
+      const imageContext = require.context('./background/GALLERY', false, /\.(png|jpe?g|svg|gif|webp)$/);
+      const imageFiles = imageContext.keys();
+      
+      
+      
+      const loadedImages = imageFiles.map((file, index) => {
+        const imageModule = imageContext(file);
+        const fileName = file.replace('./', '').replace(/\.(png|jpe?g|svg|gif|webp)$/i, '');
+        
+        return {
+          src: imageModule,
+          caption: fileName,
+          name: fileName,
+          id: index
+        };
+      });
+      
+      
+      setImages(loadedImages);
+    } catch (error) {
+      console.error('Error loading gallery images:', error);
+      setImages([]);
+    }
+  };
+
+  useEffect(() => {
+    loadGalleryImages();
+  }, []);
 
   const openModal = (image) => {
     setSelectedImage(image);
@@ -76,6 +60,11 @@ const Gallery = () => {
     setSelectedImage(images[newIndex]);
   };
 
+  const handleOrder = (image) => {
+    // You can customize this function to handle ordering
+    alert(`Order placed for: ${image.name}`);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-emerald-50 pt-24">
       <section className="py-20">
@@ -92,57 +81,66 @@ const Gallery = () => {
             </p>
           </div>
 
-          {/* Masonry Grid */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-            {images.map((item, idx) => (
-              <div
-                key={idx}
-                className="break-inside-avoid group cursor-pointer"
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                onClick={() => openModal(item)}
-              >
-                <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border border-slate-100">
-                  {/* Image container with dynamic height */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={item.src}
-                      alt={item.caption}
-                      className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
-                      style={{
-                        aspectRatio: `${1 + (idx % 3) * 0.3}`,
-                        minHeight: '200px',
-                        maxHeight: '400px'
-                      }}
-                    />
-                    
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-800/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
-                          <p className="text-slate-800 font-medium text-sm">{item.caption}</p>
+          {/* Empty State */}
+          {images.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="text-8xl mb-6">🖼️</div>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">No Gallery Images Yet</h3>
+            </div>
+          ) : (
+            /* Masonry Grid */
+            <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+              {images.map((item, idx) => (
+                                 <div
+                   key={idx}
+                   className="break-inside-avoid group cursor-pointer"
+                   onMouseEnter={() => setHoveredIndex(idx)}
+                   onMouseLeave={() => setHoveredIndex(null)}
+                                       onClick={() => openModal(item)}
+                 >
+                  <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border border-slate-100">
+                    {/* Image container with dynamic height */}
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={item.src}
+                        alt={item.caption}
+                        className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
+                        style={{
+                          aspectRatio: `${1 + (idx % 3) * 0.3}`,
+                          minHeight: '200px',
+                          maxHeight: '400px'
+                        }}
+
+                      />
+                      
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-800/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
+                            <p className="text-slate-800 font-medium text-sm">{item.name}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Hover effects */}
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
+                          <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
                         </div>
                       </div>
                     </div>
 
-                    {/* Hover effects */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
-                        <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                      </div>
-                    </div>
+                    {/* Animated border */}
+                    <div className={`absolute inset-0 rounded-2xl border-2 transition-all duration-300 ${
+                      hoveredIndex === idx ? 'border-emerald-500/50 shadow-inner' : 'border-transparent'
+                    }`}></div>
                   </div>
-
-                  {/* Animated border */}
-                  <div className={`absolute inset-0 rounded-2xl border-2 transition-all duration-300 ${
-                    hoveredIndex === idx ? 'border-emerald-500/50 shadow-inner' : 'border-transparent'
-                  }`}></div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -187,9 +185,15 @@ const Gallery = () => {
                 className="w-full h-auto max-h-[70vh] object-contain"
               />
               <div className="p-6 bg-gradient-to-r from-emerald-50 to-rose-50">
-                <h3 className="text-slate-800 text-xl font-medium text-center">
-                  {selectedImage.caption}
+                <h3 className="text-slate-800 text-xl font-medium text-center mb-4">
+                  {selectedImage.name}
                 </h3>
+                <button
+                  onClick={() => handleOrder(selectedImage)}
+                  className="w-full bg-emerald-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-600 transition-colors duration-300"
+                >
+                  Order Now
+                </button>
               </div>
             </div>
           </div>

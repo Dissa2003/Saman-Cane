@@ -21,8 +21,11 @@ const navLinks = [
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Debug: Log that navbar is rendering
+  console.log('Navbar is rendering on:', window.location.pathname);
+
   return (
-    <nav className="fixed w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b border-rose-100">
+    <nav className="fixed w-full bg-white shadow-lg z-50 border-b border-rose-100" style={{top: 0, left: 0}}>
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <div className="flex items-center space-x-2">
           <img src={require('./background/logo/20250705_0240_Saman Cane Logo_simple_compose_01jzbmc0yye4g8meksj4hj9vwt.png')} alt="Saman Cane Logo" className="w-16 h-16 object-contain" />
@@ -38,6 +41,7 @@ function Navbar() {
                 key={link.name}
                 to={link.href}
                 className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group"
+                onClick={() => console.log('Navigating to Gallery')}
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
@@ -47,6 +51,7 @@ function Navbar() {
                 key={link.name}
                 href={link.href}
                 className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group"
+                onClick={() => console.log('Navigating to', link.name)}
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
@@ -56,6 +61,7 @@ function Navbar() {
                 key={link.name}
                 to={link.href}
                 className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group"
+                onClick={() => console.log('Navigating to', link.name)}
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
@@ -73,14 +79,17 @@ function Navbar() {
       </div>
       
       {isMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-rose-100">
+        <div className="md:hidden bg-white border-t border-rose-100">
           {navLinks.map((link) => (
             link.name === "Gallery" ? (
               <Link
                 key={link.name}
                 to={link.href}
                 className="block px-6 py-3 text-slate-700 hover:text-emerald-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  console.log('Mobile: Navigating to Gallery');
+                  setIsMenuOpen(false);
+                }}
               >
                 {link.name}
               </Link>
@@ -89,7 +98,10 @@ function Navbar() {
                 key={link.name}
                 href={link.href}
                 className="block px-6 py-3 text-slate-700 hover:text-emerald-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  console.log('Mobile: Navigating to', link.name);
+                  setIsMenuOpen(false);
+                }}
               >
                 {link.name}
               </a>
@@ -98,7 +110,10 @@ function Navbar() {
                 key={link.name}
                 to={link.href}
                 className="block px-6 py-3 text-slate-700 hover:text-emerald-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  console.log('Mobile: Navigating to', link.name);
+                  setIsMenuOpen(false);
+                }}
               >
                 {link.name}
               </Link>
