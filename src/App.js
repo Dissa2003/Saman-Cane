@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Leaf, Star, Heart, Award, Phone, Mail, MapPin, CheckCircle } from "lucide-react";
 import Gallery from "./Gallery";
+import ContactForm from "./ContactForm";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import LivingRoom from "./LivingRoom";
 import Bedroom from "./Bedroom";
@@ -320,29 +321,6 @@ function Categories() {
 }
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
@@ -356,71 +334,7 @@ function Contact() {
         </div>
         
         <div className="grid lg:grid-cols-2 gap-12">
-          <div className="bg-gradient-to-br from-emerald-50 to-rose-50 rounded-3xl p-8 shadow-xl">
-            <h3 className="text-2xl font-semibold text-slate-800 mb-6">Send us a Message</h3>
-            
-            {isSubmitted ? (
-              <div className="text-center py-12">
-                <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-                <h4 className="text-xl font-semibold text-slate-800 mb-2">Thank You!</h4>
-                <p className="text-slate-600">We'll get back to you soon.</p>
-              </div>
-            ) : (
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-slate-700 font-medium mb-2" htmlFor="name">
-                    Full Name
-                  </label>
-                  <input
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-300 bg-white/80"
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Enter your full name"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-slate-700 font-medium mb-2" htmlFor="email">
-                    Email Address
-                  </label>
-                  <input
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-300 bg-white/80"
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email address"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-slate-700 font-medium mb-2" htmlFor="message">
-                    Message
-                  </label>
-                  <textarea
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-300 bg-white/80 resize-none"
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    placeholder="Tell us about your furniture needs..."
-                  ></textarea>
-                </div>
-                
-                <button
-                  onClick={handleSubmit}
-                  className="w-full bg-emerald-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                >
-                  Send Message
-                </button>
-              </div>
-            )}
-          </div>
+          <ContactForm />
           
           <div className="space-y-8">
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
