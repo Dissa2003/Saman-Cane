@@ -15,6 +15,13 @@ const ContactForm = () => {
   const SERVICE_ID = 'service_ncawp1l';
   const TEMPLATE_ID = 'template_contact'; // Replace with your actual template ID
   const PUBLIC_KEY = 'your_public_key_here'; // Replace with your actual public key
+  
+  // Check if EmailJS is properly configured
+  const isEmailJSConfigured = () => {
+    return SERVICE_ID !== 'service_ncawp1l' && 
+           TEMPLATE_ID !== 'template_contact' && 
+           PUBLIC_KEY !== 'your_public_key_here';
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,6 +66,13 @@ const ContactForm = () => {
       return;
     }
 
+    // Check if EmailJS is configured
+    if (!isEmailJSConfigured()) {
+      setSubmitStatus('error');
+      console.error('EmailJS not configured. Please update SERVICE_ID, TEMPLATE_ID, and PUBLIC_KEY in ContactForm.js');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
@@ -66,16 +80,24 @@ const ContactForm = () => {
       // Initialize EmailJS
       emailjs.init(PUBLIC_KEY);
 
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Saman Cane Furniture',
+        reply_to: formData.email
+      };
+
+      console.log('Sending email with params:', templateParams);
+      console.log('Using Service ID:', SERVICE_ID);
+      console.log('Using Template ID:', TEMPLATE_ID);
+
       // Send email using EmailJS
       const result = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_name: 'Saman Cane Furniture'
-        },
+        templateParams,
         PUBLIC_KEY
       );
 
@@ -91,6 +113,11 @@ const ContactForm = () => {
 
     } catch (error) {
       console.error('Email sending failed:', error);
+      console.error('Error details:', {
+        status: error.status,
+        text: error.text,
+        message: error.message
+      });
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -111,7 +138,23 @@ const ContactForm = () => {
       {submitStatus === 'error' && (
         <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-xl flex items-center">
           <XCircle className="w-5 h-5 mr-2" />
-          <span className="font-medium">❌ Failed to send message. Please check all fields and try again.</span>
+          <div>
+            <span className="font-medium">❌ Failed to send message. Please try again.</span>
+            {!isEmailJSConfigured() && (
+              <div className="text-sm mt-1 text-red-600">
+                EmailJS not configured. Please update the configuration in ContactForm.js
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {!isEmailJSConfigured() && (
+        <div className="mb-6 p-4 bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-xl">
+          <div className="font-medium">⚠️ EmailJS Configuration Required</div>
+          <div className="text-sm mt-1">
+            Please update the SERVICE_ID, TEMPLATE_ID, and PUBLIC_KEY in ContactForm.js to enable email sending.
+          </div>
         </div>
       )}
 
