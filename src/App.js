@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Leaf, Star, Heart, Award, Phone, Mail, MapPin, CheckCircle } from "lucide-react";
 import Gallery from "./Gallery";
+import GalleryPreview from "./GalleryPreview";
 import ContactForm from "./ContactForm";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import LivingRoom from "./LivingRoom";
@@ -496,6 +497,7 @@ function App() {
               element={
                 <>
                   <Hero />
+                  <GalleryPreview />
                   <About />
                   <Categories />
                   <Contact />
