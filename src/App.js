@@ -27,11 +27,13 @@ function Navbar() {
   console.log('Navbar is rendering on:', window.location.pathname);
 
   return (
-    <nav className="fixed w-full bg-white shadow-lg z-50 border-b border-rose-100" style={{top: 0, left: 0}}>
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <nav className="fixed w-full z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center space-x-2">
-          <img src={require('./background/logo/715630881-Saman-Cane-Logo.png')} alt="Saman Cane Logo" className="w-16 h-16 object-contain" />
-          <span className="text-2xl font-bold text-slate-800 tracking-tight">
+          <div className="p-2 md:p-3 rounded-full bg-white border-2 border-emerald-300/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <img src={require('./background/logo/715630881-Saman-Cane-Logo.png')} alt="Saman Cane Logo" className="w-8 h-8 md:w-12 md:h-12 object-contain" />
+          </div>
+          <span className="text-lg md:text-2xl font-bold gradient-text tracking-tight">
             Saman Cane
           </span>
         </div>
@@ -42,52 +44,55 @@ function Navbar() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group"
+                className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group px-3 py-2 rounded-lg hover:bg-emerald-50/50 focus-ring"
                 onClick={() => console.log('Navigating to Gallery')}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full transition-all duration-300 group-hover:opacity-100 opacity-0"></span>
               </Link>
             ) : link.href.startsWith("#") ? (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group"
+                className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group px-3 py-2 rounded-lg hover:bg-emerald-50/50 focus-ring"
                 onClick={() => console.log('Navigating to', link.name)}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full transition-all duration-300 group-hover:opacity-100 opacity-0"></span>
               </a>
             ) : (
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group"
+                className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group px-3 py-2 rounded-lg hover:bg-emerald-50/50 focus-ring"
                 onClick={() => console.log('Navigating to', link.name)}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full transition-all duration-300 group-hover:opacity-100 opacity-0"></span>
               </Link>
             )
           ))}
         </div>
         
         <button
-          className="md:hidden text-slate-700"
+          className="md:hidden text-slate-700 hover:text-emerald-600 transition-colors p-2 rounded-lg hover:bg-emerald-50/50 focus-ring"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
-          ☰
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
       </div>
       
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-rose-100">
+        <div className="md:hidden bg-gradient-to-br from-emerald-50/95 to-emerald-100/90 backdrop-blur-md border-t border-emerald-300/50 shadow-lg">
           {navLinks.map((link) => (
             link.name === "Gallery" ? (
               <Link
                 key={link.name}
                 to={link.href}
-                className="block px-6 py-3 text-slate-700 hover:text-emerald-600 transition-colors"
+                className="block px-6 py-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50/50 transition-all duration-300 focus-ring"
                 onClick={() => {
                   console.log('Mobile: Navigating to Gallery');
                   setIsMenuOpen(false);
@@ -99,7 +104,7 @@ function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="block px-6 py-3 text-slate-700 hover:text-emerald-600 transition-colors"
+                className="block px-6 py-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50/50 transition-all duration-300 focus-ring"
                 onClick={() => {
                   console.log('Mobile: Navigating to', link.name);
                   setIsMenuOpen(false);
@@ -111,7 +116,7 @@ function Navbar() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="block px-6 py-3 text-slate-700 hover:text-emerald-600 transition-colors"
+                className="block px-6 py-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50/50 transition-all duration-300 focus-ring"
                 onClick={() => {
                   console.log('Mobile: Navigating to', link.name);
                   setIsMenuOpen(false);
@@ -129,25 +134,25 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-rose-50 via-white to-emerald-50 pt-24 pb-12 relative overflow-hidden">
-      <div className='absolute inset-0 bg-[url("data:image/svg+xml,%3Csvg%20width=\"60\"%20height=\"60\"%20viewBox=\"0%200%2060%2060\"%20xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg%20fill=\"none\"%20fill-rule=\"evenodd\"%3E%3Cg%20fill=\"%23f1f5f9\"%20fill-opacity=\"0.3\"%3E%3Ccircle%20cx=\"30\"%20cy=\"30\"%20r=\"1.5\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] opacity-40'></div>
+    <section id="home" className="min-h-screen flex flex-col justify-center items-center section-gradient-1 py-12 relative overflow-hidden">
+      <div className='absolute inset-0 bg-[url("data:image/svg+xml,%3Csvg%20width=\"60\"%20height=\"60\"%20viewBox=\"0%200%2060%2060\"%20xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg%20fill=\"none\"%20fill-rule=\"evenodd\"%3E%3Cg%20fill=\"%2310b981\"%20fill-opacity=\"0.1\"%3E%3Ccircle%20cx=\"30\"%20cy=\"30\"%20r=\"1.5\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] opacity-60'></div>
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         <div className="flex items-center justify-center mb-6">
-          <div className="bg-white/80 backdrop-blur-sm rounded-full p-4 shadow-lg border border-rose-200">
+          <div className="rounded-full p-8 bg-white border-4 border-emerald-400/60 shadow-2xl float-animation hover:shadow-3xl transition-all duration-500 hover:scale-110">
             <img src={require('./background/logo/715630881-Saman-Cane-Logo.png')} alt="Saman Cane Logo" className="w-40 h-40 object-contain" />
           </div>
         </div>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-6 leading-tight">
-          Saman Cane
-          <span className="block text-emerald-600 text-4xl md:text-5xl lg:text-6xl mt-2">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <span className="gradient-text">Saman Cane</span>
+          <span className="block text-4xl md:text-5xl lg:text-6xl mt-2 gradient-text">
             Furniture
           </span>
         </h1>
-        <p className="text-xl md:text-2xl text-slate-600 mb-8 font-light leading-relaxed">
+        <p className="text-xl md:text-2xl mb-8 font-light leading-relaxed text-slate-700">
           Crafting Timeless Cane & Rattan Furniture with 
-          <span className="text-emerald-600 font-semibold"> Passion & Precision</span>
+          <span className="gradient-text font-semibold"> Passion & Precision</span>
         </p>
-        <p className="max-w-2xl mx-auto text-slate-500 mb-10 text-lg leading-relaxed">
+        <p className="max-w-2xl mx-auto text-slate-600 mb-10 text-lg leading-relaxed">
           Welcome to Saman Cane Furniture, where tradition meets contemporary elegance. 
           Discover our handcrafted cane and rattan pieces, designed to bring warmth, 
           style, and natural beauty to your home.
@@ -155,13 +160,13 @@ function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#about"
-            className="bg-emerald-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="btn-primary text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus-ring"
           >
             Discover Our Story
           </a>
           <a
             href="#contact"
-            className="bg-white text-emerald-600 border-2 border-emerald-500 px-8 py-4 rounded-full font-semibold hover:bg-emerald-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="glass-morphism text-slate-700 border-2 border-emerald-500/30 px-8 py-4 rounded-full font-semibold hover:bg-emerald-50/50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus-ring"
           >
             Get In Touch
           </a>
@@ -191,13 +196,13 @@ function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-16 md:py-20 section-gradient-2">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-            About Our <span className="text-emerald-600">Craft</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            About Our <span className="gradient-text">Craft</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
             For over three decades, Saman Cane Furniture has been a family-owned business 
             dedicated to the art of cane and rattan craftsmanship.
           </p>
@@ -205,7 +210,7 @@ function About() {
         
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <div className="bg-gradient-to-br from-emerald-100 to-rose-100 rounded-3xl p-8 shadow-xl">
+            <div className="glass-morphism rounded-3xl p-8 shadow-2xl pulse-green">
               <div className="text-center">
                 <Award className="w-16 h-16 text-emerald-600 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-slate-800 mb-4">25+ Years</h3>
@@ -228,8 +233,8 @@ function About() {
         
         <div className="grid md:grid-cols-3 gap-8">
           {values.map((value, index) => (
-            <div key={index} className="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="bg-white rounded-full w-14 h-14 flex items-center justify-center mb-4 shadow-md">
+            <div key={index} className="card-hover glass-morphism rounded-2xl p-6 shadow-lg border border-emerald-200/30 hover:shadow-xl">
+              <div className="bg-white/80 backdrop-blur-sm rounded-full w-14 h-14 flex items-center justify-center mb-4 shadow-md">
                 {value.icon}
               </div>
               <h3 className="text-xl font-semibold text-slate-800 mb-3">{value.title}</h3>
@@ -289,27 +294,27 @@ function Categories() {
   ];
 
   return (
-    <section id="categories" className="py-20 bg-gradient-to-br from-slate-50 to-white">
+    <section id="categories" className="py-16 md:py-20 section-gradient-3">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-            Our <span className="text-emerald-600">Categories</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Our <span className="gradient-text">Categories</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
             Explore our diverse collection of handcrafted furniture designed for every room and purpose.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (
-            <div key={index} className={`bg-gradient-to-br ${category.color} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-white/50`}>
+            <div key={index} className="card-hover glass-morphism rounded-2xl p-8 shadow-lg hover:shadow-xl cursor-pointer border border-emerald-200/30">
               <div className="text-center">
-                <div className="text-4xl mb-4">{category.icon}</div>
+                <div className="text-4xl mb-4 float-animation">{category.icon}</div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-3">{category.name}</h3>
-                <p className="text-slate-600 leading-relaxed">{category.description}</p>
-                <div className="mt-4 inline-flex items-center text-emerald-600 font-medium">
-                  <Link to={category.link} className="flex items-center hover:underline">
+                <p className="text-slate-600 leading-relaxed mb-4">{category.description}</p>
+                <div className="mt-4 inline-flex items-center text-emerald-600 font-medium hover:text-emerald-700 transition-colors">
+                  <Link to={category.link} className="flex items-center hover:underline focus-ring">
                     Explore Collection
-                    <span className="ml-2">→</span>
+                    <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
                   </Link>
                 </div>
               </div>
@@ -323,13 +328,13 @@ function Categories() {
 
 function Contact() {
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-16 md:py-20 section-gradient-1">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-            Get In <span className="text-emerald-600">Touch</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
             Ready to bring beautiful cane furniture into your home? We'd love to hear from you!
           </p>
         </div>
@@ -338,7 +343,7 @@ function Contact() {
           <ContactForm />
           
           <div className="space-y-8">
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+            <div className="glass-morphism rounded-2xl p-8 shadow-lg border border-emerald-200/30">
               <h3 className="text-2xl font-semibold text-slate-800 mb-6">Contact Information</h3>
               
               <div className="space-y-6">
@@ -381,7 +386,7 @@ function Contact() {
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 shadow-lg border border-amber-100">
+            <div className="glass-morphism rounded-2xl p-8 shadow-lg border border-emerald-200/30">
               <h3 className="text-xl font-semibold text-slate-800 mb-4">Business Hours</h3>
               <div className="space-y-2 text-slate-600">
                 <div className="flex justify-between">
@@ -407,13 +412,15 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="bg-slate-800 text-white py-12">
+    <footer className="bg-gradient-to-br from-slate-800 via-slate-700 to-emerald-900 text-white py-12">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <img src={require('./background/logo/715630881-Saman-Cane-Logo.png')} alt="Saman Cane Logo" className="w-16 h-16 object-contain" />
-              <span className="text-2xl font-bold">Saman Cane</span>
+              <div className="p-3 rounded-full bg-white border-2 border-emerald-400/70 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <img src={require('./background/logo/715630881-Saman-Cane-Logo.png')} alt="Saman Cane Logo" className="w-16 h-16 object-contain" />
+              </div>
+              <span className="text-2xl font-bold gradient-text">Saman Cane</span>
             </div>
             <p className="text-slate-300 leading-relaxed">
               Crafting beautiful, sustainable furniture for over 25 years. 

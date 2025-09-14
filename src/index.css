@@ -2,6 +2,268 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom CSS Variables for Dynamic Theming */
+:root {
+  --primary-green: #10b981;
+  --light-green: #d1fae5;
+  --medium-green: #6ee7b7;
+  --dark-green: #047857;
+  --deep-green: #064e3b;
+  --accent-green: #34d399;
+  --gradient-start: #f0fdf4;
+  --gradient-end: #064e3b;
+}
+
+/* Advanced Body Styling with Dynamic Background */
 body {
-  @apply bg-sand text-wood font-sans;
+  @apply font-sans;
+  background: linear-gradient(180deg, 
+    var(--gradient-start) 0%, 
+    #ecfdf5 25%, 
+    #d1fae5 50%, 
+    #a7f3d0 75%, 
+    #6ee7b7 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #064e3b;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-green);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-green), var(--dark-green));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--accent-green), var(--deep-green));
+}
+
+/* Advanced Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-green), var(--dark-green), var(--deep-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Unique Card Hover Effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.card-hover:hover::before {
+  left: 100%;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.25);
+}
+
+/* Advanced Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+
+/* Unique Section Backgrounds */
+.section-gradient-1 {
+  background: linear-gradient(135deg, 
+    rgba(240, 253, 244, 0.8) 0%, 
+    rgba(209, 250, 229, 0.6) 50%, 
+    rgba(167, 243, 208, 0.4) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.section-gradient-2 {
+  background: linear-gradient(135deg, 
+    rgba(236, 253, 245, 0.9) 0%, 
+    rgba(220, 252, 231, 0.7) 50%, 
+    rgba(187, 247, 208, 0.5) 100%);
+  backdrop-filter: blur(15px);
+}
+
+.section-gradient-3 {
+  background: linear-gradient(135deg, 
+    rgba(240, 253, 244, 0.95) 0%, 
+    rgba(209, 250, 229, 0.8) 50%, 
+    rgba(167, 243, 208, 0.6) 100%);
+  backdrop-filter: blur(20px);
+}
+
+/* Advanced Animation Classes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(16, 185, 129, 0.1), 
+    transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Unique Glass Morphism Effect */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1);
+}
+
+/* Advanced Hover States */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+}
+
+/* Custom Focus States */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+}
+
+/* Navbar Fixes */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  background: linear-gradient(135deg, rgba(240, 253, 244, 0.95), rgba(209, 250, 229, 0.9)) !important;
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 2px solid rgba(16, 185, 129, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* Navbar text styling */
+nav a, nav button {
+  color: #064e3b !important;
+  font-weight: 500 !important;
+}
+
+nav a:hover, nav button:hover {
+  color: #10b981 !important;
+}
+
+nav .gradient-text {
+  background: linear-gradient(135deg, #064e3b, #10b981, #34d399) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Ensure content doesn't hide behind navbar */
+body {
+  padding-top: 80px !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(180deg, 
+      var(--gradient-start) 0%, 
+      #ecfdf5 30%, 
+      #d1fae5 60%, 
+      #a7f3d0 100%);
+    padding-top: 70px !important;
+  }
+  
+  /* Ensure navbar doesn't overlap content on mobile */
+  nav {
+    height: auto;
+    min-height: 60px;
+  }
+  
+  /* Add extra padding for mobile navbar */
+  section {
+    scroll-margin-top: 80px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gradient-start: #064e3b;
+    --gradient-end: #022c22;
+  }
+  
+  body {
+    background: linear-gradient(180deg, 
+      #064e3b 0%, 
+      #047857 25%, 
+      #059669 50%, 
+      #10b981 75%, 
+      #34d399 100%);
+    color: #f0fdf4;
+  }
 } 

@@ -86,15 +86,15 @@ const GalleryPreview = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-white">
+    <section className="py-16 md:py-20 section-gradient-2">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-            Our <span className="text-emerald-600">Gallery</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Our <span className="gradient-text">Gallery</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-rose-500 mx-auto rounded-full mb-6"></div>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 mx-auto rounded-full mb-6"></div>
+          <p className="text-slate-700 text-lg max-w-2xl mx-auto leading-relaxed">
             Discover our handcrafted cane and rattan furniture collection
           </p>
         </div>
@@ -189,7 +189,7 @@ const GalleryPreview = () => {
         <div className="text-center">
           <Link
             to="/gallery"
-            className="inline-flex items-center bg-emerald-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="btn-primary inline-flex items-center text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus-ring"
           >
             View Full Gallery
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
