@@ -13,14 +13,12 @@ const ContactForm = () => {
 
   // EmailJS configuration
   const SERVICE_ID = 'service_ncawp1l';
-  const TEMPLATE_ID = 'template_contact'; // Replace with your actual template ID
-  const PUBLIC_KEY = 'your_public_key_here'; // Replace with your actual public key
+  const TEMPLATE_ID = 'template_j1v2dab';
+  const PUBLIC_KEY = 'ZqEH51ema1UwtzUtF';
   
   // Check if EmailJS is properly configured
   const isEmailJSConfigured = () => {
-    return SERVICE_ID !== 'service_ncawp1l' && 
-           TEMPLATE_ID !== 'template_contact' && 
-           PUBLIC_KEY !== 'your_public_key_here';
+    return SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY;
   };
 
   const handleChange = (e) => {

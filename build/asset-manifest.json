@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d05c0e95.css",
-    "main.js": "/static/js/main.2da2d47f.js",
+    "main.css": "/static/css/main.50da79d3.css",
+    "main.js": "/static/js/main.1b0db99a.js",
     "static/media/WhatsApp Image 2025-07-04 at 3.36.06 PM (3).jpeg": "/static/media/WhatsApp Image 2025-07-04 at 3.36.06 PM (3).dd5b098d2a4b692f7a93.jpeg",
     "static/media/WhatsApp Image 2025-07-04 at 3.36.07 PM.jpeg": "/static/media/WhatsApp Image 2025-07-04 at 3.36.07 PM.fe00707635cc66967175.jpeg",
     "static/media/WhatsApp Image 2025-07-04 at 3.36.02 PM (1).jpeg": "/static/media/WhatsApp Image 2025-07-04 at 3.36.02 PM (1).e6e100e917938ed6fc3e.jpeg",
@@ -42,11 +42,11 @@
     "static/media/CH-001.jpeg": "/static/media/CH-001.12e77bf19f4f5a0244f4.jpeg",
     "static/media/Swing Chair.jpeg": "/static/media/Swing Chair.12e77bf19f4f5a0244f4.jpeg",
     "index.html": "/index.html",
-    "main.d05c0e95.css.map": "/static/css/main.d05c0e95.css.map",
-    "main.2da2d47f.js.map": "/static/js/main.2da2d47f.js.map"
+    "main.50da79d3.css.map": "/static/css/main.50da79d3.css.map",
+    "main.1b0db99a.js.map": "/static/js/main.1b0db99a.js.map"
   },
   "entrypoints": [
-    "static/css/main.d05c0e95.css",
-    "static/js/main.2da2d47f.js"
+    "static/css/main.50da79d3.css",
+    "static/js/main.1b0db99a.js"
   ]
 }
