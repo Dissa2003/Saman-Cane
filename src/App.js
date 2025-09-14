@@ -359,7 +359,7 @@ function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-800 mb-1">Email</h4>
-                    <a href="mailto:info@samancane.com" className="text-emerald-600 hover:text-emerald-700 transition-colors">
+                    <a href="mailto:canefurnituresaman@gmail.com" className="text-emerald-600 hover:text-emerald-700 transition-colors">
                       info@samancane.com
                     </a>
                   </div>
