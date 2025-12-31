@@ -495,9 +495,9 @@ function Footer() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-x-hidden max-w-full">
         <Navbar />
-        <main>
+        <main className="overflow-x-hidden max-w-full">
           <Routes>
             <Route
               path="/"

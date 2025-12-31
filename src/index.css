@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 /* Custom CSS Variables for Dynamic Theming */
 :root {
   --primary-green: #10b981;
@@ -27,6 +33,8 @@ body {
   min-height: 100vh;
   color: #064e3b;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Custom Scrollbar */
@@ -229,6 +237,11 @@ body {
 }
 
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
   body {
     background: linear-gradient(180deg, 
       var(--gradient-start) 0%, 
